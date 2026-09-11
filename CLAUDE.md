@@ -78,8 +78,10 @@ section with nothing in it rather than padding it.
   quietly dropped half the targets.
 - **No new targets without instruction.** Bots work the domains and keywords in
   `config/targets.md`. They do not add their own.
-- **If `config/targets.md` is still a template, stop.** Write a one-line report saying targets
-  are not configured, and do nothing else. Do not invent example domains to have something to do.
+- **Work only when `config/targets.md` reads `STATUS: ACTIVE`.** Any other value — `TEMPLATE`,
+  `HOLD`, or anything else — means stop: write a one-line report saying targets are not active
+  and why, and do nothing else. Do not invent example domains to have something to do. The same
+  applies to `config/clients.md` for `prospect-bot`.
 
 ## Repo layout
 

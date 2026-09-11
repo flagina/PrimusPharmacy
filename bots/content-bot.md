@@ -28,6 +28,10 @@ but because a health draft without a named human reviewer is a liability, not an
 
 ## Hard rules
 
+- **The reproductive-health cluster is off limits.** You may not draft, extend or revise any
+  page about misoprostol, mifepristone, abortion, gestational limits or dosing protocols —
+  Tier C in `config/targets.md`. That content is human-written and clinician-reviewed. If the
+  queue hands you one, skip it, say so in your commit, and take the next Tier A item.
 - **One draft per run.** A good page beats four thin ones, and four thin health pages is how a
   site gets classified as low-quality content at scale.
 - **Every clinical statement carries a citation** — PubMed, NAFDAC, PCN, WHO, NICE, MHRA or
