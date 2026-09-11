@@ -18,6 +18,16 @@ Maintained by the Chief of Staff on Mondays and by whoever is working in a live 
       this connector uses — DataForSEO bills per API login, not per dashboard email. Check the
       login on app.dataforseo.com/api-access against the funded account, and confirm the
       balance is account credit rather than a plan.
+      **Retested after a £46 payment on 2026-09-11 — no change whatsoever.** Five billable
+      product lines (Labs, Keywords Data, SERP, OnPage) all still 402; free metadata endpoint
+      still 200. A payment producing zero change across five independent product lines points
+      at credentials, not funds: the connector is probably authenticating as a different
+      DataForSEO account. Settle it with
+      `curl -u "LOGIN:PASSWORD" https://api.dataforseo.com/v3/appendix/user_data` — a healthy
+      balance there means reconnect the connector in claude.ai Settings → Connectors with the
+      correct API login; a zero balance there makes it a DataForSEO billing matter.
+      The connector is a remote claude.ai connector, so its credentials are not visible or
+      changeable from inside a session.
 - [ ] **Top up Semrush API units** — subscription active, units exhausted
       (semrush.com/mcp-access).
 - [ ] Until both are resolved the measurement bots produce nothing, which is why
