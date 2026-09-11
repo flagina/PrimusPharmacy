@@ -1,0 +1,439 @@
+<title>The Teammate Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
+<style>
+  :root{
+    --paper:#E8EBEF;
+    --surface:#FDFDFE;
+    --ink:#141A22;
+    --ink-soft:#5A6473;
+    --ink-faint:#8B95A3;
+    --accent:#A93318;
+    --accent-wash:#A9331812;
+    --good:#1C6A58;
+    --rule:#CBD2DA;
+    --rule-soft:#DDE2E8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#11151A;
+      --surface:#181D24;
+      --ink:#E4E9EF;
+      --ink-soft:#97A2B0;
+      --ink-faint:#6D7885;
+      --accent:#E56A4D;
+      --accent-wash:#E56A4D1A;
+      --good:#4FB49B;
+      --rule:#2A323C;
+      --rule-soft:#222932;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#11151A;
+    --surface:#181D24;
+    --ink:#E4E9EF;
+    --ink-soft:#97A2B0;
+    --ink-faint:#6D7885;
+    --accent:#E56A4D;
+    --accent-wash:#E56A4D1A;
+    --good:#4FB49B;
+    --rule:#2A323C;
+    --rule-soft:#222932;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:16.5px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    padding-inline:24px;
+    padding-block:0;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding-block:clamp(44px,7vw,84px) 96px}
+
+  .mono{font-family:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace}
+
+  /* ---------- masthead ---------- */
+  .masthead{border-bottom:2px solid var(--ink);padding-bottom:26px}
+  .kicker{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 18px;
+  }
+  h1{
+    font-family:Newsreader,Georgia,"Times New Roman",serif;
+    font-weight:600;font-size:clamp(40px,7.5vw,68px);line-height:1.02;
+    letter-spacing:-.015em;margin:0;text-wrap:balance;
+  }
+  .standfirst{
+    font-family:Newsreader,Georgia,serif;
+    font-size:clamp(19px,2.4vw,23px);line-height:1.45;color:var(--ink-soft);
+    margin:20px 0 0;max-width:38ch;
+  }
+  .meta{
+    display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:28px;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11.5px;letter-spacing:.06em;color:var(--ink-faint);
+  }
+  .meta b{color:var(--ink-soft);font-weight:500}
+
+  /* ---------- sections + marginalia rail ---------- */
+  .sec{
+    display:grid;grid-template-columns:9.5rem minmax(0,1fr);gap:0 2.75rem;
+    padding-block:clamp(38px,5vw,58px);
+    border-bottom:1px solid var(--rule-soft);
+  }
+  .sec:last-of-type{border-bottom:0}
+  .mark{position:sticky;top:20px;align-self:start}
+  .mark .no{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);display:block;margin-bottom:8px;
+  }
+  .mark .verdict{
+    font-family:Newsreader,Georgia,serif;font-style:italic;
+    font-size:15px;line-height:1.4;color:var(--ink-faint);
+  }
+  h2{
+    font-family:Newsreader,Georgia,serif;font-weight:600;
+    font-size:clamp(26px,3.4vw,33px);line-height:1.15;letter-spacing:-.01em;
+    margin:0 0 16px;text-wrap:balance;
+  }
+  .body p{margin:0 0 16px;max-width:66ch}
+  .body p:last-child{margin-bottom:0}
+  .lede{font-size:17.5px}
+
+  /* ---------- pillar rows ---------- */
+  .pillars{display:flex;flex-direction:column;gap:2px;margin-top:26px}
+  .pillar{
+    background:var(--surface);
+    border-left:2px solid var(--rule);
+    padding:18px 20px;
+    display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:0 14px;
+  }
+  .pillar:hover{border-left-color:var(--accent)}
+  .pillar .n{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px;color:var(--ink-faint);padding-top:3px;
+    font-variant-numeric:tabular-nums;
+  }
+  .pillar h3{
+    font-family:Newsreader,Georgia,serif;font-weight:600;font-size:19px;
+    line-height:1.25;margin:0 0 10px;
+  }
+  .kv{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:4px 12px;font-size:15px}
+  .kv dt{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--ink-faint);padding-top:4px;
+  }
+  .kv dd{margin:0;color:var(--ink-soft)}
+  .kv dd strong{color:var(--ink);font-weight:600}
+  .ladder{
+    margin-top:18px;font-size:14.5px;color:var(--ink-soft);
+    border-left:2px solid var(--accent);padding-left:16px;max-width:62ch;
+  }
+
+  /* ---------- machinery ---------- */
+  .device{padding:18px 0;border-top:1px solid var(--rule-soft);max-width:68ch}
+  .device:first-of-type{border-top:1px solid var(--rule)}
+  .device h3{
+    font-size:15.5px;font-weight:600;margin:0 0 6px;letter-spacing:-.005em;
+  }
+  .device p{margin:0;color:var(--ink-soft);font-size:15.5px}
+
+  /* ---------- pressure points ---------- */
+  .press{display:flex;flex-direction:column;gap:26px;margin-top:26px}
+  .press blockquote{
+    margin:0 0 10px;padding-left:18px;border-left:3px solid var(--accent);
+    font-family:Newsreader,Georgia,serif;font-style:italic;
+    font-size:18.5px;line-height:1.42;color:var(--ink);max-width:56ch;
+  }
+  .press blockquote cite{
+    display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-style:normal;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:9px;
+  }
+  .press .ask{margin:0;color:var(--ink-soft);max-width:64ch;font-size:15.5px}
+  .press .ask::before{
+    content:"→";color:var(--accent);font-family:"IBM Plex Mono",monospace;
+    margin-right:9px;
+  }
+
+  /* ---------- reuse ---------- */
+  .use{display:flex;flex-direction:column;gap:0;margin-top:26px}
+  .use li{
+    list-style:none;display:grid;grid-template-columns:6.5rem minmax(0,1fr);
+    gap:0 16px;padding:16px 0;border-top:1px solid var(--rule-soft);
+  }
+  .use li:first-child{border-top:1px solid var(--rule)}
+  .tag{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 7px;border:1px solid currentColor;border-radius:2px;
+    align-self:start;justify-self:start;white-space:nowrap;
+  }
+  .tag.steal{color:var(--good)}
+  .tag.invert{color:var(--accent);background:var(--accent-wash)}
+  .tag.budget{color:var(--ink-faint)}
+  .use h3{font-size:15.5px;font-weight:600;margin:0 0 5px}
+  .use p{margin:0;color:var(--ink-soft);font-size:15.5px;max-width:62ch}
+
+  .closer{
+    margin-top:14px;padding:22px 24px;background:var(--surface);
+    border-top:2px solid var(--accent);
+  }
+  .closer p{
+    margin:0;font-family:Newsreader,Georgia,serif;font-size:19px;
+    line-height:1.45;max-width:54ch;
+  }
+
+  footer{
+    margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.05em;color:var(--ink-faint);line-height:1.7;
+  }
+
+  @media (max-width:780px){
+    .sec{grid-template-columns:1fr;gap:0}
+    .mark{position:static;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+    .mark .no{margin-bottom:0}
+    .pillar{grid-template-columns:1fr;gap:6px}
+    .pillar .n{padding-top:0}
+    .kv{grid-template-columns:1fr;gap:2px}
+    .kv dt{padding-top:8px}
+    .use li{grid-template-columns:1fr;gap:9px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Messaging teardown</p>
+    <h1>The Teammate Pitch</h1>
+    <p class="standfirst">Grok Bot's launch page isn't selling an agent. It's selling a hiring decision — and almost every line on it is downstream of that one move.</p>
+    <div class="meta">
+      <span><b>Source</b> x.ai/news/introducing-grok-bot</span>
+      <span><b>Read</b> from supplied page text</span>
+      <span><b>Date</b> 11 Sep 2026</span>
+      <span><b>For</b> Primus</span>
+    </div>
+  </header>
+
+  <section class="sec">
+    <div class="mark"><span class="no">The read</span><span class="verdict">One frame, held consistently</span></div>
+    <div class="body">
+      <h2>What the page actually does</h2>
+      <p class="lede">It renames the category. Not <em>agent</em>, not <em>assistant</em> — <strong>teammate</strong>. That single substitution reassigns the reader's role from operator to manager, and once the reader accepts it, every feature arrives pre-justified.</p>
+      <p>Watch the conversions. A cloud VM becomes “a computer of its own” — a desk. A chat interface becomes “message it like a colleague.” Few-shot learning becomes “show a Bot how it's done.” Permission scoping becomes “trust your Bots with more over time” — a probation period. The capabilities are ordinary; the vocabulary is the product.</p>
+      <p>This is the strongest thing on the page and the reason it reads better than most agent launches, which lead with architecture and hope the buyer translates.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="mark"><span class="no">01 — Spine</span><span class="verdict">Five claims, in ladder order</span></div>
+    <div class="body">
+      <h2>The argument, and what each part defends</h2>
+      <p>Five sections, each answering an objection the category has earned. The order is not arbitrary — it climbs.</p>
+
+      <div class="pillars">
+        <article class="pillar">
+          <span class="n">01</span>
+          <div>
+            <h3>A computer of its own</h3>
+            <dl class="kv">
+              <dt>Claims</dt><dd>Bots use a shared cloud machine and drive apps through the GUI, including “platforms with no clean API or MCP.”</dd>
+              <dt>Defends</dt><dd><strong>The integration ceiling.</strong> Every API-bound agent stops where the API stops. This is the moat claim.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="pillar">
+          <span class="n">02</span>
+          <div>
+            <h3>Message it like a teammate</h3>
+            <dl class="kv">
+              <dt>Claims</dt><dd>No workflows, no routines, no setup — you text it, on phone or desktop, same thread.</dd>
+              <dt>Defends</dt><dd><strong>The activation cliff.</strong> An explicit swipe at builder-style tools: “Other AI tools may ask you to set up and build workflows and routines first.”</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="pillar">
+          <span class="n">03</span>
+          <div>
+            <h3>Work with many Bots at once</h3>
+            <dl class="kv">
+              <dt>Claims</dt><dd>A chief-of-staff bot over specialists; bots message each other and share threads; group chats where they assign ownership.</dd>
+              <dt>Defends</dt><dd><strong>“Now I'm the bottleneck.”</strong> The honest failure mode of multi-agent setups is eight tabs and a human courier. The answer offered is an org chart, not a swarm.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="pillar">
+          <span class="n">04</span>
+          <div>
+            <h3>Show a Bot how it's done</h3>
+            <dl class="kv">
+              <dt>Claims</dt><dd>It watches you do the job once, saves it as a routine, takes corrections, runs it alone next time.</dd>
+              <dt>Defends</dt><dd><strong>Prompting as a skill barrier.</strong> Demonstration replaces specification — the buyer never has to learn to write instructions.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="pillar">
+          <span class="n">05</span>
+          <div>
+            <h3>Trust your Bots with more over time</h3>
+            <dl class="kv">
+              <dt>Claims</dt><dd>They retain context, pick up your voice and edge cases, chase dropped threads, grow proactive.</dd>
+              <dt>Defends</dt><dd><strong>The week-two cliff.</strong> Novelty churn is the category's real killer. This is the retention argument, dressed as a relationship.</dd>
+            </dl>
+          </div>
+        </article>
+      </div>
+
+      <p class="ladder">Sections 01–03 are capability. Sections 04–05 are relationship. The page spends its first half earning the right to make the second half's claims — which is why the sequence is real information and not just an outline.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="mark"><span class="no">02 — Machinery</span><span class="verdict">Devices doing the lifting</span></div>
+    <div class="body">
+      <h2>What's carrying the persuasion</h2>
+
+      <div class="device">
+        <h3>The employee chorus</h3>
+        <p>Five testimonials, first name and function only — Roman/Product, Fiona/Community, Vincent/Growth, Bennett/Sales, Emma/Operations. Note the spread: not one engineer. That's a deliberate answer to the objection every agent product meets, that it's really a developer tool. It is also the cheapest credibility available, and unfalsifiable from outside.</p>
+      </div>
+
+      <div class="device">
+        <h3>Concession as proof</h3>
+        <p>Emma admits she micromanaged the bots for weeks — “to the point where they asked me why I kept asking so many questions.” Naming the awkward ramp is the sharpest editorial choice on the page. It buys credibility for every claim that isn't hedged at all, and most launch pages cut exactly this sentence.</p>
+      </div>
+
+      <div class="device">
+        <h3>The last-mile metaphor</h3>
+        <p>“There is a huge difference between 90% done and 100% done… Grok Bot can finish the swing.” Three words do the whole differentiation. Competitors all claim capability; this claims <em>completion</em>. It's the most portable line on the page and the one worth stealing outright.</p>
+      </div>
+
+      <div class="device">
+        <h3>Verbs of employment</h3>
+        <p>Sign in, seat new hires, process invoices, file the ticket, hand the fix off. Not integrate, orchestrate, execute. The vocabulary establishes the position before a single feature is described.</p>
+      </div>
+
+      <div class="device">
+        <h3>Nouns you can picture, facts you can't check</h3>
+        <p>CRM notes from call transcripts, invoices in Gmail, a bug reproduced in the product UI. Concrete enough to visualise, specific to nothing. Excellent copy; not evidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="mark"><span class="no">03 — Pressure</span><span class="verdict">Where a buyer pushes back</span></div>
+    <div class="body">
+      <h2>The soft claims</h2>
+      <p>Not errors — gaps. Each is the point where a serious evaluator stops reading and opens a spreadsheet.</p>
+
+      <div class="press">
+        <div>
+          <blockquote>They can sign in and work across apps, tools, and websites, including platforms with no clean API or MCP.<cite>Section: A computer of its own</cite></blockquote>
+          <p class="ask">Whose credentials, held where, scoped how — and what's in the audit log when a bot does the wrong thing in a live system? The page's central capability claim is also its central security question, and there is not one sentence about authentication, permissions, data residency or logging. For any buyer with a security review, this is question one.</p>
+        </div>
+
+        <div>
+          <blockquote>I showed Grok Bot a workflow once and now I just fully trust it to run forever… it does it without me verifying and reviewing.<cite>Bennett, Sales</cite></blockquote>
+          <p class="ask">This is a testimonial advocating the removal of human review, in a beta product, from the vendor's own sales team — and it's framed as the reward. It's the riskiest sentence on the page, and in any regulated setting it's disqualifying rather than aspirational.</p>
+        </div>
+
+        <div>
+          <blockquote>They finish jobs end to end, and only come back when something needs your approval.<cite>Opening</cite></blockquote>
+          <p class="ask">Set against Emma checking in every fifteen minutes, the page is selling the end state and the ramp at the same time without ever saying how long the ramp is. “How many weeks before it's actually hands-off?” has no answer here.</p>
+        </div>
+
+        <div>
+          <blockquote>We built Grok Bot as an internal prototype, and it took off across the company.<cite>Opening</cite></blockquote>
+          <p class="ask">Internal adoption presented as product-market fit. Internal users have zero switching cost, direct access to the people who build the thing, and a tolerance for failure no paying customer has. It's a good story and weak evidence.</p>
+        </div>
+
+        <div>
+          <blockquote>Grok Bot comes with its own usage, separate from your Grok and Cursor plans.<cite>Availability</cite></blockquote>
+          <p class="ask">Phrased as generosity; it is a new metered dimension. There is no price, no included allowance, and no overage behaviour stated anywhere on the page — and enterprise, where the budget actually sits, is waitlisted. That combination reads as a capacity constraint, which puts real availability well after the announcement.</p>
+        </div>
+
+        <div>
+          <blockquote>Working with Grok Bot feels like I have eight arms like an octopus.<cite>Vincent, Growth</cite></blockquote>
+          <p class="ask">There is not a single number on this page — no task-success rate, no hours saved, no volume handled, no failure rate. Entirely narrative proof. That's a defensible choice for a launch, but it means the page cannot be argued with and cannot be verified, and it gives a comparison-shopping buyer nothing to carry into a meeting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="mark"><span class="no">04 — Transfer</span><span class="verdict">For health-brand launches</span></div>
+    <div class="body">
+      <h2>What Primus should take, invert, or budget around</h2>
+      <p>Read for a shop positioning health and pharmacy brands, where the regulatory floor changes which half of this page is usable.</p>
+
+      <ul class="use">
+        <li>
+          <span class="tag steal">Steal</span>
+          <div>
+            <h3>The category rename</h3>
+            <p>“Teammate, not tool” works because it relocates the reader, not the product. For a health brand the equivalent move is usually service → relationship, or vendor → clinical partner. Only make the rename if the delivery can survive it; a rename you can't honour is the fastest route to churn.</p>
+          </div>
+        </li>
+        <li>
+          <span class="tag steal">Steal</span>
+          <div>
+            <h3>Naming the last mile</h3>
+            <p>The 90/100 line is the single most reusable idea here. Name the 100% in the client's own vocabulary: the prior authorisation that came back approved, the refill that actually reached the patient, the rejected claim that got re-billed. Specific completion beats abstract capability every time.</p>
+          </div>
+        </li>
+        <li>
+          <span class="tag steal">Steal</span>
+          <div>
+            <h3>The claim → mechanism → one human sentence rhythm</h3>
+            <p>Every section here closes on a quote, and the structure is what makes the page feel evidenced rather than asserted. It works with pilot clients. Where consent is a problem, use role and setting — “Superintendent pharmacist, 4-branch group, Lagos” — rather than a first name.</p>
+          </div>
+        </li>
+        <li>
+          <span class="tag steal">Steal</span>
+          <div>
+            <h3>One honest concession</h3>
+            <p>Emma's quote is worth more than three additional benefit bullets. A single sentence naming the awkward part of onboarding signals that the rest of the page isn't hiding anything.</p>
+          </div>
+        </li>
+        <li>
+          <span class="tag invert">Invert</span>
+          <div>
+            <h3>The trust ladder, for anything regulated</h3>
+            <p>This page's payoff is the removal of the human. Pharmacy and health sell the exact opposite: every action attributable, reviewable and logged. Sell the brake as hard as the engine — to a regulated buyer, the audit trail <em>is</em> the feature, not the caveat. Lifting Bennett's quote into a health context would cost a client the deal.</p>
+          </div>
+        </li>
+        <li>
+          <span class="tag budget">Budget for</span>
+          <div>
+            <h3>What this page can't do in search</h3>
+            <p>It ranks on brand and nothing else. No question-shaped headings, no comparison page, no pricing, no extractable facts — so it catches announcement demand and no problem-led demand, and it gives a language model almost nothing quotable to cite. If you reuse this structure for a client, scope the acquisition pages separately: a launch page is a press moment, not an asset.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="closer">
+        <p>The transferable lesson isn't the feature set. It's that the page picked one frame, converted every capability into that frame's vocabulary, and never broke character — including in the testimonials it chose to run.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Analysis based on the announcement text as supplied, not a live fetch of the page — quotes are reproduced from that text for commentary.<br>
+    Prepared for Primus · 11 September 2026
+  </footer>
+
+</div>
