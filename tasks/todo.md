@@ -6,6 +6,10 @@ Maintained by the Chief of Staff on Mondays and by whoever is working in a live 
 
 - [ ] **Create the `general` repository** — session tooling returned 403 and cannot create it.
       Create at github.com/new, then it can be attached to a session.
+- [ ] **Attach connectors to the six data-pulling Routines** in the claude.ai Routines UI.
+      All seven were created without connector grants, so fired sessions currently have no
+      DataForSEO, Semrush, PubMed or Gmail tools. See `bots/README.md` for which bot needs
+      which. The Chief of Staff is unaffected — it only reads the repo.
 - [ ] **Fill `config/targets.md`** and set `STATUS: ACTIVE`. Until this is done every bot runs,
       reports "targets not configured", and stops. Nothing else in the system matters until
       this is real.

@@ -15,6 +15,37 @@ fresh session on a cron; that session reads `CLAUDE.md`, then its own brief, the
 
 Lagos is UTC+1 with no DST, so the cron entries are one hour earlier in UTC.
 
+## Routine IDs
+
+| Bot | Cron (UTC) | Trigger |
+|---|---|---|
+| `chief-of-staff` | `0 7 * * 1` | `trig_01KDbrpw9oBY2oNoikNDuxuT` |
+| `rank-watch` | `0 6 * * *` | `trig_012SXo2nqYK7L4mEMDcZCHgS` |
+| `citation-bot` | `0 7 * * 2` | `trig_017ohbrYBxZbpn8PiHjqqTVK` |
+| `serp-scout` | `0 7 * * 3` | `trig_013pA4rcC6dLX2fHTUQ9GLjb` |
+| `content-bot` | `0 7 * * 4` | `trig_013ADh4Nibjfwo2gDsnY79x4` |
+| `prospect-bot` | `0 7 * * 5` | `trig_01KqNj1rD3NWiaKMiSXFBfQK` |
+| `health-desk` | `0 7 1 * *` | `trig_01MGSvYWK3M5nUE3pBbtaQTd` |
+
+Only the Chief of Staff notifies (push + email). One signal a week, not seven — the other six
+report into the repo and the Monday brief decides what is worth an interruption.
+
+## Known limitation: the Routines carry no connectors
+
+All seven were created without MCP connector grants — the tool that created them could not
+pass any through, and it said so on every call. A fired session therefore starts with no
+`mcp__*` tools: no DataForSEO, no Semrush, no PubMed, no Gmail, no GitHub API.
+
+In practice that means `rank-watch`, `citation-bot`, `serp-scout` and `health-desk` cannot pull
+the data their briefs depend on until this is fixed, and will correctly report the source as
+unavailable rather than inventing numbers.
+
+**The fix:** open each Routine in the claude.ai Routines UI and attach the connectors it needs.
+Per bot: `rank-watch` → DataForSEO, Semrush. `citation-bot` → DataForSEO. `serp-scout` →
+DataForSEO. `content-bot` → DataForSEO, PubMed. `prospect-bot` → Vibe Prospecting, DataForSEO.
+`health-desk` → PubMed. `chief-of-staff` → none needed; it only reads the repo, so it works as
+created.
+
 ## Changing a bot
 
 Edit its markdown file and commit. The next run picks it up — there is nothing else to
