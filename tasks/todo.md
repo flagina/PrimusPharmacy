@@ -10,36 +10,40 @@ Maintained by the Chief of Staff on Mondays and by whoever is working in a live 
       All seven were created without connector grants, so fired sessions currently have no
       DataForSEO, Semrush, PubMed or Gmail tools. See `bots/README.md` for which bot needs
       which. The Chief of Staff is unaffected — it only reads the repo.
-- [ ] **Fix DataForSEO billing.** Retested 2026-09-11 after a reported top-up — still 402 on
-      every billable endpoint. Diagnostic: the free metadata endpoint `serp_locations`
-      returned 200 OK with valid data, so the credentials and the connector are fine; Labs,
-      Keywords Data and SERP all return 402. That is an account-balance refusal, not an auth
-      or scope problem. Most likely the top-up landed on a different API login than the one
-      this connector uses — DataForSEO bills per API login, not per dashboard email. Check the
-      login on app.dataforseo.com/api-access against the funded account, and confirm the
-      balance is account credit rather than a plan.
-      **Retested after a £46 payment on 2026-09-11 — no change whatsoever.** Five billable
-      product lines (Labs, Keywords Data, SERP, OnPage) all still 402; free metadata endpoint
-      still 200. A payment producing zero change across five independent product lines points
-      at credentials, not funds: the connector is probably authenticating as a different
-      DataForSEO account. Settle it with
-      `curl -u "LOGIN:PASSWORD" https://api.dataforseo.com/v3/appendix/user_data` — a healthy
-      balance there means reconnect the connector in claude.ai Settings → Connectors with the
-      correct API login; a zero balance there makes it a DataForSEO billing matter.
-      The connector is a remote claude.ai connector, so its credentials are not visible or
-      changeable from inside a session.
+- [x] **DataForSEO working** — resolved 2026-09-11 18:58 UTC. The payment simply took time
+      to settle; the earlier credentials theory was wrong. Baseline pulled.
 - [ ] **Top up Semrush API units** — subscription active, units exhausted
       (semrush.com/mcp-access).
-- [ ] Until both are resolved the measurement bots produce nothing, which is why
-      `config/targets.md` stays on HOLD rather than ACTIVE.
-- [ ] **Set `config/targets.md` to `STATUS: ACTIVE`** once the two above are done. The targets
-      themselves are now filled in from a live crawl.
+- [ ] **Top up Semrush** — still exhausted. `rank-watch` runs single-sourced until then, with
+      no cross-check on any figure.
+- [x] **`config/targets.md` is now `STATUS: ACTIVE`** with measured volumes. The bots run from
+      their next scheduled fire.
 - [ ] **Fill `config/clients.md`** and set `STATUS: ACTIVE` — `prospect-bot` needs a market.
 - [ ] **Give this repo a default branch.** It currently has none; bots commit to
       `claude/grok-bot-launch-0igi3y`. Merge that branch to `main` and the bots follow.
 - [ ] **Authorise the WordPress connector** if drafts should ever reach a CMS. Note that
       `content-bot` is instructed never to publish regardless — this only affects what a human
       can do from a session.
+
+## From the 2026-09-11 rank baseline
+
+Full findings in `reports/rank/2026-09-11.md`.
+
+- [ ] **Retarget or consolidate the flagship.** `/where-to-get-misoprostol-in-lagos` targets a
+      10/mo keyword and ranks for nothing, while "misoprostol price in nigeria" (1,300/mo) is
+      served by a product page. Either retarget it to national price intent or fold it into
+      `/misoprostol-cytotec-200-microgram-tablets-lagos`, which already holds position 3.
+- [ ] **Approve a Postinor-2 page.** "postinor 2 price in nigeria" is 1,600/mo, flat, low
+      competition, and has no page — the largest single gap on the site. Tier C by subject, so
+      human-written and clinician-reviewed.
+- [ ] **Build four local pages** — Ikeja (260/mo), Lekki (140), Surulere (140), Yaba (90).
+      Competition index 1–3.
+- [ ] **Confirm we are not chasing "pharmacy near me."** 81,300/mo combined at positions 16–22,
+      owned by the map pack, wrong intent for a delivery pharmacy. Recorded as a non-target.
+- [ ] **Decide how to defend "big pharmacy in lagos"** (320/mo, position 6) — the homepage holds
+      it with no dedicated page.
+- [ ] Note the category trend: misoprostol demand −47% and mifepristone −55% over 12 months.
+      The diversification argument is now a trend line, not a hypothesis.
 
 ## From the 2026-09-11 site audit
 

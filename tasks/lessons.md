@@ -50,3 +50,30 @@ lines and include a free or unmetered endpoint in the probe. A free endpoint ret
 every billable one returns 402 isolates the fault to account balance and rules out credentials,
 connector and scope in one pass. Report the table, not the verdict.
 
+---
+
+### 2026-09-11 — A payment that changes nothing can still just be a slow payment
+
+**What happened.** DataForSEO returned 402 after a reported top-up, and again after a £46
+payment. I reasoned that zero change across five independent product lines pointed at a
+credentials mismatch rather than funds. It did not — the payment simply took time to settle,
+and everything worked on the next retest.
+
+**Rule.** The diagnostic probe was right and worth keeping; the conclusion drawn from it was
+not. When a payment is minutes old, "not settled yet" outranks every cleverer hypothesis, and
+the honest answer is "retest in fifteen minutes" rather than a confident theory. Reserve the
+credentials explanation for a balance the provider's own account endpoint confirms is healthy.
+
+---
+
+### 2026-09-11 — Mark unverified figures, then let the data delete your plan
+
+**What happened.** The first `config/targets.md` was built from a crawl with every volume
+marked `[unverified]`. When real data arrived, four of the Tier A keywords had no search
+volume at all, the flagship page's target term was worth 10 searches a month, and the largest
+opportunity on the site (Postinor-2, 1,600/mo) was absent from the plan entirely.
+
+**Rule.** A hypothesis written as a hypothesis costs nothing to throw away. Never let a
+plausible keyword list harden into a plan before a measured number touches it — and when the
+number arrives, delete what it contradicts rather than defending it.
+
