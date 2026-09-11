@@ -37,3 +37,16 @@ disqualifying rather than aspirational.
 **Rule.** In everything this team produces for health brands, the audit trail and the named
 human reviewer are the feature, not the caveat. Never draft copy that sells the removal of
 clinical review, including for ourselves.
+
+---
+
+### 2026-09-11 — Diagnose a 402 before reporting it as "still broken"
+
+**What happened.** DataForSEO was reported as topped up and still returned 402. Reporting only
+that would have sent Alex back to the same screen with no new information.
+
+**Rule.** When a paid API keeps failing after the user says they fixed it, probe across product
+lines and include a free or unmetered endpoint in the probe. A free endpoint returning 200 while
+every billable one returns 402 isolates the fault to account balance and rules out credentials,
+connector and scope in one pass. Report the table, not the verdict.
+

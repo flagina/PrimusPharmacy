@@ -10,10 +10,18 @@ Maintained by the Chief of Staff on Mondays and by whoever is working in a live 
       All seven were created without connector grants, so fired sessions currently have no
       DataForSEO, Semrush, PubMed or Gmail tools. See `bots/README.md` for which bot needs
       which. The Chief of Staff is unaffected — it only reads the repo.
-- [ ] **Fund DataForSEO and Semrush.** DataForSEO returns HTTP 402 (out of credits); Semrush
-      reports its subscription active but API units exhausted (semrush.com/mcp-access). Until
-      both are funded the measurement bots cannot produce anything. This is why
-      `config/targets.md` is on HOLD rather than ACTIVE.
+- [ ] **Fix DataForSEO billing.** Retested 2026-09-11 after a reported top-up — still 402 on
+      every billable endpoint. Diagnostic: the free metadata endpoint `serp_locations`
+      returned 200 OK with valid data, so the credentials and the connector are fine; Labs,
+      Keywords Data and SERP all return 402. That is an account-balance refusal, not an auth
+      or scope problem. Most likely the top-up landed on a different API login than the one
+      this connector uses — DataForSEO bills per API login, not per dashboard email. Check the
+      login on app.dataforseo.com/api-access against the funded account, and confirm the
+      balance is account credit rather than a plan.
+- [ ] **Top up Semrush API units** — subscription active, units exhausted
+      (semrush.com/mcp-access).
+- [ ] Until both are resolved the measurement bots produce nothing, which is why
+      `config/targets.md` stays on HOLD rather than ACTIVE.
 - [ ] **Set `config/targets.md` to `STATUS: ACTIVE`** once the two above are done. The targets
       themselves are now filled in from a live crawl.
 - [ ] **Fill `config/clients.md`** and set `STATUS: ACTIVE` — `prospect-bot` needs a market.
